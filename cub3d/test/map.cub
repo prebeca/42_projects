@@ -1,14 +1,12 @@
-R 1280 720
+R 1920 1080
+NO ./path_to_the_north_texture
+SO ./path_to_the_south_texture
+WE ./path_to_the_west_texture
+EA ./path_to_the_east_texture
 
-NO ./res/eagle.xpm
-SO ./res/mossy.xpm
-WE ./res/greystone.xpm
-EA ./res/wood.xpm
-
-F 123,12,222
-C 54,128,0
-
-S ./res/pillar.xpm
+S ./path_to_the_sprite_texture
+F 220,100,0
+C 225,30,0
 
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 1 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
