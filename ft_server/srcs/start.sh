@@ -5,7 +5,6 @@ chmod -R 755 /var/www/*
 
 #Website folder
 mkdir /var/www/domain
-chown -R $USER:$USER /var/www/domain
 cp srcs/info.php /var/www/domain/info.php
 
 #nginx
@@ -28,10 +27,15 @@ mv phpMyAdmin-5.0.1-all-languages/ /var/www/domain/phpmyadmin
 cp ./srcs/config.sample.inc.php /var/www/domain/phpmyadmin/config.inc.php
 
 #wordpress
-wget -c https://wordpress.org/latest.tar.gz
+wget https://wordpress.org/latest.tar.gz
 tar xvf latest.tar.gz
 mv wordpress /var/www/domain/
 cp ./srcs/wp-config-sample.php /var/www/domain/wordpress/wp-config.php
+
+#SSL
+mkdir /etc/nginx/ssl
+cd /etc/nginx/ssl
+openssl req -newkey rsa:4096 -x509 -sha256 -days 3650 -nodes -out domain.crt -keyout domain.key -subj "/C=FR/ST=Ile de France/L=Paris/O=42/OU=IT Department/CN=www.domain.com"
 
 service php7.3-fpm start
 service nginx restart

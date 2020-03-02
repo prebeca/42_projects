@@ -1,13 +1,24 @@
 server {
     listen 80;
-    listen [::]:80;
 
-    root /var/www/domain;
-    index index.php index.html index.htm;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443;
+
+    ssl on;
 
     server_name domain;
 
+    root /var/www/domain;
+    index index.php index.html index.htm info.php;
+
+    ssl_certificate /etc/nginx/ssl/domain.crt;
+    ssl_certificate_key /etc/nginx/ssl/domain.key;
+
     location / {
+        autoindex on;
         try_files $uri $uri/ =404;
     }
 
