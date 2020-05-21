@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/28 17:48:19 by prebeca           #+#    #+#              #
-#    Updated: 2020/05/21 12:08:30 by user42           ###   ########.fr        #
+#    Updated: 2020/05/21 12:39:37 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,6 @@ C_FILES	=	bmp.c					\
 			setup_window.c			\
 			setup_window_utils.c	\
 			utils.c
-
-			
-
-			
 			
 SRCS	=	$(addprefix ${C_DIR}/, ${C_FILES})
 
@@ -45,7 +41,7 @@ CC		=	clang
 
 CFLAGS	=	-I./inc/ -Wall -Wextra -Werror #-fsanitize=address
 
-LIBS	=	libft/libft.a
+LIBS	=	libft/libft.a minilibx-linux/libmlx_Linux.a
 
 ARG		=	NULL
 
@@ -53,7 +49,8 @@ all:		${NAME}
 
 ${NAME}:	${OBJS}
 			${MAKE} -C libft bonus
-			${CC} ${CFLAGS} ${OBJS} -lmlx -lX11 -lXext -lm ${LIBS} -o ${NAME}
+			${MAKE} -C minilibx-linux
+			${CC} ${CFLAGS} ${OBJS} -lX11 -lXext -lm ${LIBS} -o ${NAME}
 
 .c.o:
 			${CC} ${CFLAGS} -c $< -o $@
@@ -63,13 +60,10 @@ ${NAME}:	${OBJS}
 clean:
 			rm -f ${OBJS}
 			${MAKE}	-C libft clean
+			${MAKE} -C minilibx-linux clean
 
 fclean:		clean
 			rm -f ${NAME}
 			${MAKE} -C libft fclean
 
 re:			fclean all
-
-run:		re
-			@echo
-			./${NAME} ${ARG}
