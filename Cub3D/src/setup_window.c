@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 15:26:56 by user42            #+#    #+#             */
-/*   Updated: 2020/05/21 12:47:19 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/22 00:27:23 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ void	setup_window(t_data *data)
 		free_exit(data, put_error("mlx_new_window failed", -1));
 	mlx_hook(data->mlx.win_ptr, DestroyNotify,
 	StructureNotifyMask, &on_exit_hook, data);
-	mlx_hook(data->mlx.win_ptr, PropertyNotify,
-	PropertyChangeMask, &on_update, data);
+	mlx_expose_hook(data->mlx.win_ptr, &on_update, data);
 	mlx_hook(data->mlx.win_ptr, KeyPress, KeyPressMask, &on_key_press, data);
 	mlx_hook(data->mlx.win_ptr, KeyRelease,
 	KeyReleaseMask, &on_key_release, data);
