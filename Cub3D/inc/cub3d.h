@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 18:45:19 by user42            #+#    #+#             */
-/*   Updated: 2020/05/21 12:13:07 by user42           ###   ########.fr       */
+/*   Updated: 2020/06/08 16:51:47 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@
 # define BMP_DIBHEADER_SIZE 40
 # define BMP_COLOR_PLANE 1
 
-typedef enum
+typedef enum	e_bool
 {
 	false,
 	true
-}	t_bool;
+}				t_bool;
 
 /*
 ** Structures
@@ -60,8 +60,6 @@ typedef struct	s_point
 	double	x;
 	double	y;
 }				t_point;
-
-
 
 typedef struct	s_mlx
 {
@@ -100,7 +98,7 @@ typedef struct	s_ray
 	double	wall_x;
 	t_img	*texture;
 	int		text_x;
-	int 	text_y;
+	int		text_y;
 }				t_ray;
 
 typedef struct	s_sprite_ray
@@ -158,15 +156,15 @@ typedef struct	s_data
 	t_cam	cam;
 	t_bool	save;
 	t_img	image;
-	double *wall_dist;
+	double	*wall_dist;
 }				t_data;
 
 /*
 ** Window management
 */
 void			setup_window(t_data *data);
-int		on_key_press(int keycode, t_data *data);
-int		on_key_release(int keycode, t_data *data);
+int				on_key_press(int keycode, t_data *data);
+int				on_key_release(int keycode, t_data *data);
 
 /*
 ** Drawing
@@ -175,10 +173,10 @@ void			draw(t_data *data);
 void			draw_sprites(t_data *data);
 void			set_pixel_color(int x, int y, int color, t_data *data);
 void			rectify_wall_dist(t_ray *ray);
-void	get_step_and_dlen(t_ray *ray);
-void	set_pixel_color(int x, int y, int color, t_data *data);
-void	init_ray(t_data *data, t_ray *ray, int x);
-void	sort_sprites(t_list *lst, t_data *data);
+void			get_step_and_dlen(t_ray *ray);
+void			set_pixel_color(int x, int y, int color, t_data *data);
+void			init_ray(t_data *data, t_ray *ray, int x);
+void			sort_sprites(t_list *lst, t_data *data);
 
 /*
 ** Movement
@@ -221,14 +219,13 @@ int				check_closed_map(t_data *data, int x, int y);
 /*
 ** .bmp
 */
-int			img_to_bmp(t_img *img);
+int				img_to_bmp(t_img *img);
 
 /*
 **  Utils
 */
 void			set_cam_dir(t_data *data, double dx, double dy);
 int				ft_ischarset(char c, char *charset);
-
 
 char			**free_table(char **table);
 int				table_len(char **tab);

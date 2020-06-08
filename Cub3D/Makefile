@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/28 17:48:19 by prebeca           #+#    #+#              #
-#    Updated: 2020/05/21 12:39:37 by user42           ###   ########.fr        #
+#    Updated: 2020/06/08 16:39:32 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ all:		${NAME}
 ${NAME}:	${OBJS}
 			${MAKE} -C libft bonus
 			${MAKE} -C minilibx-linux
-			${CC} ${CFLAGS} ${OBJS} -lX11 -lXext -lm ${LIBS} -o ${NAME}
+			${CC} ${CFLAGS} ${OBJS} -lX11 -lXext -lbsd -lm ${LIBS} -o ${NAME}
 
 .c.o:
 			${CC} ${CFLAGS} -c $< -o $@
