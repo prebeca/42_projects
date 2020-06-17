@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 12:39:56 by user42            #+#    #+#             */
-/*   Updated: 2020/05/22 00:04:24 by user42           ###   ########.fr       */
+/*   Updated: 2020/06/16 10:40:25 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int	check_map(t_data *data)
 			else if (data->map.tile_map[y][x] == '2')
 				error = get_sprite(data, x, y);
 			if (error == 0 && ft_ischarset(data->map.tile_map[y][x],
-			"0NSEW") == true)
+			"02NSEW") == true)
 				error = check_closed_map(data, x, y);
 		}
 	}

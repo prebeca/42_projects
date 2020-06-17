@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/28 17:48:19 by prebeca           #+#    #+#              #
-#    Updated: 2020/06/08 16:39:32 by user42           ###   ########.fr        #
+#    Updated: 2020/06/17 11:54:02 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ OBJS	=	${SRCS:.c=.o}
 
 CC		=	clang
 
-CFLAGS	=	-I./inc/ -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS	=	-I./inc/ -Wall -Wextra -Werror -fsanitize=address
 
 LIBS	=	libft/libft.a minilibx-linux/libmlx_Linux.a
 

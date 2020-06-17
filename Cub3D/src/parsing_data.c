@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 12:31:19 by user42            #+#    #+#             */
-/*   Updated: 2020/05/18 14:46:12 by user42           ###   ########.fr       */
+/*   Updated: 2020/06/16 12:17:01 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	get_img_data(t_data *data, char **line_split, t_img **img)
 	line_split[1], &((*img)->width), &((*img)->height))) == 0)
 	{
 		free(*img);
+		*img = 0;
 		return (put_error("failed to load textures", -1));
 	}
 	if (((*img)->data_address = mlx_get_data_addr((*img)->img_ptr,
@@ -80,11 +81,11 @@ int	get_color_data(char **line_split, int *rgb_value)
 	{
 		j = 0;
 		while (error == 0 && rbg_split[i][j])
-			if (!ft_isdigit(rbg_split[1][j++]))
+			if (!ft_isdigit(rbg_split[i][j++]))
 				error = put_error("wrong ceilling/floor rgb data", -1);
 		j = ft_atoi(rbg_split[i]);
-		if (j < 0 || j > 255)
-			return (put_error("RGB value must be [0-255]", -1));
+		if (error == 0 && (j < 0 || j > 255))
+			error = put_error("RGB value must be [0-255]", -1);
 		*rgb_value += pow(256, 2 - i) * j;
 	}
 	free_table(rbg_split);

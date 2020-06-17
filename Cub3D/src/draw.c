@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 23:05:33 by user42            #+#    #+#             */
-/*   Updated: 2020/05/21 11:49:06 by user42           ###   ########.fr       */
+/*   Updated: 2020/06/16 13:14:48 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ void	texture_switch(t_data *data, t_ray *ray)
 
 void	draw_col_texture(t_ray *ray, int x, int y, t_data *data)
 {
+	ray->text_y = (ray->text_y < 0) ? 0 : ray->text_y;
+	ray->text_y = (ray->text_y > ray->texture->height) ?
+	ray->texture->height : ray->text_y;
 	ft_memcpy(&data->image.data_address[(y *
 	data->image.line_size + x * data->image.bpp / 8)],
 	&ray->texture->data_address[(ray->text_y *
