@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 12:38:29 by user42            #+#    #+#             */
-/*   Updated: 2020/05/21 11:59:17 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/03 10:54:19 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,12 @@ int	get_map(t_data *data, int file_descriptor)
 	{
 		ft_lstadd_back(&map_lines, ft_lstnew(line));
 		gnl_return = get_next_line(file_descriptor, &line);
-		if (ft_strlen(line) == 0)
+		if (ft_strlen(line) == 0 && gnl_return)
 			error = put_error("empty line in map", -1);
 		if (gnl_return == -1)
 			error = put_error("error while reading map file", -1);
 	}
-	if (error == 0 && ft_strlen(line) != 0)
-		ft_lstadd_back(&map_lines, ft_lstnew(line));
+	ft_lstadd_back(&map_lines, ft_lstnew(line));
 	if (error == 0)
 		error = get_map_data(data, map_lines);
 	ft_lstclear(&map_lines, &free);

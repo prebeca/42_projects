@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 12:31:19 by user42            #+#    #+#             */
-/*   Updated: 2020/06/16 12:17:01 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/18 00:01:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,11 @@ int	get_r_data(t_data *data, char **line_split)
 {
 	int	i;
 	int j;
-	int	max_width;
-	int max_height;
 
 	if (table_len(line_split) != 3)
 		return (put_error("wrong window resolution data", -1));
 	if (data->map.height != -1 || data->map.height != -1)
 		return (put_error("duplicate window resolution data", -1));
-	mlx_get_screen_size(data->mlx.mlx_ptr, &max_width, &max_height);
 	i = 0;
 	while (line_split[++i])
 	{
@@ -31,11 +28,12 @@ int	get_r_data(t_data *data, char **line_split)
 		while (line_split[i][j])
 			if (!ft_isdigit(line_split[i][j++]))
 				return (put_error("wrong window resolution data", -1));
-		if (i == 1 && (data->map.width = ft_atoi(line_split[1])) > max_width)
-			data->map.width = max_width;
-		else if ((data->map.height = ft_atoi(line_split[2])) > max_height)
-			data->map.height = max_height;
+		if (i == 1)
+			data->map.width = ft_atoi(line_split[1]);
+		else
+			data->map.height = ft_atoi(line_split[2]);
 	}
+	check_r_data(data);
 	return (0);
 }
 
@@ -75,7 +73,7 @@ int	get_color_data(char **line_split, int *rgb_value)
 		return (put_error("wrong ceilling/floor color data", -1));
 	if ((rbg_split = ft_split(line_split[1], ',')) == 0 ||
 	table_len(rbg_split) != 3)
-		return (put_error("failed to get rbg values for ceilling/floor", -1));
+		error = put_error("failed to get rbg values for ceilling/floor", -1);
 	i = -1;
 	while (error == 0 && rbg_split[++i])
 	{

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/16 13:42:25 by user42            #+#    #+#             */
-/*   Updated: 2020/05/18 13:26:32 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/17 23:51:47 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	move_left_right(t_data *data)
 	else
 		return ;
 	if (ft_ischarset(data->map.tile_map[(int)data->cam.y][(int)(data->cam.x +
-	data->cam.px * (SPEED * mod))], "02NSEw"))
+	data->cam.px * (SPEED * mod))], WALKABLE))
 		data->cam.x += data->cam.px * (SPEED * mod);
 	if (ft_ischarset(data->map.tile_map[(int)(data->cam.y + data->cam.py *
-	(SPEED * mod))][(int)data->cam.x], "02NSEw"))
+	(SPEED * mod))][(int)data->cam.x], WALKABLE))
 		data->cam.y += data->cam.py * (SPEED * mod);
 }
 
@@ -41,10 +41,10 @@ void	move_fwrd_bckwrd(t_data *data)
 	else
 		return ;
 	if (ft_ischarset(data->map.tile_map[(int)data->cam.y][(int)(data->cam.x +
-	data->cam.dx * (SPEED * mod))], "02NSEw"))
+	data->cam.dx * (SPEED * mod))], WALKABLE))
 		data->cam.x += data->cam.dx * (SPEED * mod);
 	if (ft_ischarset(data->map.tile_map[(int)(data->cam.y + data->cam.dy *
-	(SPEED * mod))][(int)data->cam.x], "02NSEw"))
+	(SPEED * mod))][(int)data->cam.x], WALKABLE))
 		data->cam.y += data->cam.dy * (SPEED * mod);
 }
 

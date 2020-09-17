@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 18:45:19 by user42            #+#    #+#             */
-/*   Updated: 2020/06/08 16:51:47 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/17 23:51:27 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,17 @@
 # define ARG_SAVE "--save"
 # define MAP_EXTENSION "cub"
 
+# define WALKABLE "0NSEW"
+
+# define MIN_WIDTH 100
+
 # define SPEED 0.1
 # define ROT_SPEED 0.1
-
 # define ESCAPE 65307
-# define FORWARD 122
+# define FORWARD 119
 # define BACKWARD 115
 # define RIGHT 100
-# define LEFT 113
+# define LEFT 97
 # define ROT_RIGHT 65363
 # define ROT_LEFT 65361
 
@@ -54,7 +57,6 @@ typedef enum	e_bool
 /*
 ** Structures
 */
-
 typedef struct	s_point
 {
 	double	x;
@@ -190,6 +192,7 @@ void			init_data(t_data *data);
 void			free_exit(t_data *data, int exit_value);
 void			manage_arg(t_data *data, int argc, char **argv);
 void			destroy_image(void *mlx_ptr, t_img *img);
+
 /*
 ** Parsing
 */
@@ -198,9 +201,9 @@ void			parse_file(t_data *data);
 int				get_data(t_data *data, int file_descriptor);
 int				data_switch(t_data *data, char **line_split);
 int				get_r_data(t_data *data, char **line_split);
+void			check_r_data(t_data *data);
 int				get_img_data(t_data *data, char **line_split, t_img **img);
-void			data_switch_textures(t_data *data,
-char **line_split, int *error);
+int				wall_texture_switch(t_data *data, char **line_split);
 void			data_switch_color(t_data *data, char **line_split, int *error);
 int				get_color_data(char **line_split, int *rgb_value);
 int				check_data(t_data *data);

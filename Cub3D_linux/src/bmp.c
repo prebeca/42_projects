@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:46:36 by prebeca           #+#    #+#             */
-/*   Updated: 2020/05/21 11:43:57 by user42           ###   ########.fr       */
+/*   Updated: 2020/06/17 12:39:01 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ static int	bmp_write_header(unsigned char *header,
 		return (-1);
 	write(fd, header, BMP_HEADER_OFFSET);
 	write(fd, buffer, img_size);
+	free(buffer);
 	close(fd);
 	return (0);
 }

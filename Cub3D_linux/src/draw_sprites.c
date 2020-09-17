@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 15:30:18 by user42            #+#    #+#             */
-/*   Updated: 2020/05/21 11:57:11 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/03 12:13:37 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,14 @@ void	draw_sprite_col(t_data *data, t_sprite_ray *ray)
 	int		color;
 
 	x = ray->draw_start_x - 1;
-	while (++x < ray->draw_end_x)
+	while (++x <= ray->draw_end_x)
 	{
 		texture_x = (int)(256 * (x - (-ray->width / 2 + ray->screen_x)) *
 		data->map.texture_sprite->width / ray->width) / 256;
 		y = ray->draw_start_y - 1;
-		if (ray->ty > 0 && x > 0 && x < data->map.width &&
+		if (ray->ty >= 0 && x >= 0 && x < data->map.width &&
 		ray->ty < data->wall_dist[x])
-			while (++y < ray->draw_end_y)
+			while (++y <= ray->draw_end_y)
 			{
 				texture_y = (((y * 256 - data->map.height * 128 + ray->height *
 				128) * data->map.texture_sprite->height) /

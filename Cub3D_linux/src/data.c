@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 19:36:51 by user42            #+#    #+#             */
-/*   Updated: 2020/06/16 12:15:25 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/11 16:50:39 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	free_exit(t_data *data, int exit_value)
 		mlx_destroy_image(data->mlx.mlx_ptr, data->image.img_ptr);
 	free_table(data->map.tile_map);
 	ft_lstclear(&data->map.sprite_list, &free);
+	free(data->map.sprite_list);
 	if (data->wall_dist)
 		free(data->wall_dist);
 	destroy_image(data->mlx.mlx_ptr, data->map.texture_no);
@@ -73,6 +74,7 @@ void	free_exit(t_data *data, int exit_value)
 	destroy_image(data->mlx.mlx_ptr, data->map.texture_ea);
 	destroy_image(data->mlx.mlx_ptr, data->map.texture_we);
 	destroy_image(data->mlx.mlx_ptr, data->map.texture_sprite);
+	free(data->mlx.mlx_ptr);
 	exit(exit_value);
 }
 

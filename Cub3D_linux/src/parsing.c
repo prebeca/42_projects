@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/12 00:30:54 by user42            #+#    #+#             */
-/*   Updated: 2020/05/16 16:21:40 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/15 13:39:10 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,17 @@ void	parse_file(t_data *data)
 	close(file_descriptor);
 	if (error == -1)
 		free_exit(data, -1);
+}
+
+int		check_data(t_data *data)
+{
+	if (data->map.ceiling_color == -1 || data->map.floor_color == -1)
+		return (-1);
+	if (data->map.width == -1 || data->map.height == -1)
+		return (-1);
+	if (data->map.texture_no == 0 || data->map.texture_so == 0 ||
+	data->map.texture_ea == 0 || data->map.texture_we == 0 ||
+	data->map.texture_sprite == 0)
+		return (-1);
+	return (0);
 }

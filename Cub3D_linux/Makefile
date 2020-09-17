@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/28 17:48:19 by prebeca           #+#    #+#              #
-#    Updated: 2020/06/17 11:54:02 by user42           ###   ########.fr        #
+#    Updated: 2020/09/11 16:50:00 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,36 +14,17 @@ NAME	=	Cub3D
 
 C_DIR	=	src
 
-C_FILES	=	bmp.c					\
-			data.c					\
-			draw.c					\
-			draw_utils.c			\
-			draw_sprites.c			\
-			draw_sprites_utils.c	\
-			get_next_line.c			\
-			get_next_line_utils.c	\
-			main.c					\
-			movement.c				\
-			parsing.c				\
-			parsing_data.c			\
-			parsing_data_utils.c	\
-			parsing_map.c			\
-			parsing_map_utils.c		\
-			setup_window.c			\
-			setup_window_utils.c	\
-			utils.c
-			
-SRCS	=	$(addprefix ${C_DIR}/, ${C_FILES})
+O_DIR	=	obj
 
-OBJS	=	${SRCS:.c=.o}
+C_FILES	=	${wildcard ${C_DIR}/*.c}
+
+OBJS	=	${patsubst ${C_DIR}/%, ${O_DIR}/%, ${C_FILES:.c=.o}}
 
 CC		=	clang
 
-CFLAGS	=	-I./inc/ -Wall -Wextra -Werror -fsanitize=address
+CFLAGS	=	-I./inc/ -Wall -Wextra -Werror #-fsanitize=leak
 
 LIBS	=	libft/libft.a minilibx-linux/libmlx_Linux.a
-
-ARG		=	NULL
 
 all:		${NAME}
 
@@ -52,13 +33,14 @@ ${NAME}:	${OBJS}
 			${MAKE} -C minilibx-linux
 			${CC} ${CFLAGS} ${OBJS} -lX11 -lXext -lbsd -lm ${LIBS} -o ${NAME}
 
-.c.o:
+${O_DIR}/%.o : ${C_DIR}/%.c
+			@mkdir -p obj
 			${CC} ${CFLAGS} -c $< -o $@
 
 .PHONY:		clean fclean re .c.o all run
 
 clean:
-			rm -f ${OBJS}
+			rm -rf ${O_DIR}
 			${MAKE}	-C libft clean
 			${MAKE} -C minilibx-linux clean
 
